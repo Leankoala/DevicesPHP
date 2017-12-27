@@ -8,17 +8,19 @@ class DeviceFactory
 
     private $devices;
 
+    private $devicesJsonFile;
+
     public function __construct($devicesJsonFile = null)
     {
         if (!$devicesJsonFile) {
-            $devicesJsonFile = self::DEFAULT_DEVICES_JSON_FILE;
+            $this->devicesJsonFile = self::DEFAULT_DEVICES_JSON_FILE;
         }
 
-        if (!file_exists($devicesJsonFile)) {
+        if (!file_exists($this->devicesJsonFile)) {
             throw new \RuntimeException('Unable to find device json file.');
         }
 
-        $rawDevices = json_decode(file_get_contents($devicesJsonFile), true);
+        $rawDevices = json_decode(file_get_contents($this->devicesJsonFile), true);
 
         foreach ($rawDevices as $rawDevice) {
             $this->devices[$rawDevice['identifier']] = $rawDevice;
@@ -28,7 +30,7 @@ class DeviceFactory
     public function create($deviceName)
     {
         if (!array_key_exists($deviceName, $this->devices)) {
-            throw new  \RuntimeException('Device not found (' . $deviceName . ')');
+            throw new  \RuntimeException('Device not found (' . $deviceName . ").\nPlease have a look at " . realpath($this->devicesJsonFile) . ' for a list of valid devices.');
         }
 
         $deviceArray = $this->devices[$deviceName];
