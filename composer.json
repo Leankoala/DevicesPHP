@@ -1,6 +1,7 @@
 {
   "name": "leankoala/devicesphp",
   "description": "Device factory based on leankoala/devices",
+  "license": "MIT",
   "require": {
     "php": ">= 5.4.0",
     "leankoala/devices": "dev-master"
