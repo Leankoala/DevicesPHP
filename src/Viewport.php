@@ -77,10 +77,10 @@ class Viewport implements \JsonSerializable
         return [
             'width' => $this->getWidth(),
             'height' => $this->getHeight(),
-            'hasTouch' => $this->hasTouch(),
-            'isMobile' => $this->isMobile(),
-            'isLandscape' => $this->isLandscape(),
-            'deviceScaleFactor' => $this->getDeviceScaleFactor()
+            //'hasTouch' => $this->hasTouch(),
+            //'isMobile' => $this->isMobile(),
+            //'isLandscape' => $this->isLandscape(),
+            //'deviceScaleFactor' => $this->getDeviceScaleFactor()
         ];
     }
 }
