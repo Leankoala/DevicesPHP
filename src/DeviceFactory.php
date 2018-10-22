@@ -6,6 +6,8 @@ class DeviceFactory
 {
     const DEFAULT_DEVICES_JSON_FILE = __DIR__ . '/../../devices/Devices/devices.json';
 
+    const FALLBACK_DEVICE_NAME = 'MacBookPro152017';
+
     private $devices;
 
     private $devicesJsonFile;
@@ -29,6 +31,10 @@ class DeviceFactory
 
     public function create($deviceName)
     {
+        if ($deviceName == '#device#') {
+            $deviceName = self::FALLBACK_DEVICE_NAME;
+        }
+
         if (!array_key_exists($deviceName, $this->devices)) {
             throw new  \RuntimeException('Device not found (' . $deviceName . ").\nPlease have a look at " . realpath($this->devicesJsonFile) . ' for a list of valid devices.');
         }
