@@ -31,7 +31,7 @@ class DeviceFactory
 
     public function create($deviceName)
     {
-        if ($deviceName == '#device#') {
+        if ($deviceName == '#device#' || $deviceName === '') {
             $deviceName = self::FALLBACK_DEVICE_NAME;
         }
 
